@@ -23,8 +23,6 @@ class Tabuada:
     modes = ["easy", "medium", "hard"]
 
 
-
-
     def init(operation=None, table_of=None, mode=None):
         """ Runs the game with the given arguments """
 
@@ -44,6 +42,7 @@ class Tabuada:
             Tabuada.mode = 'easy'
 
         return Tabuada.build_arithmetic_expression()
+
 
     # build_arithmetic_expression should be renamed to something else
     def build_arithmetic_expression(): 
@@ -72,8 +71,6 @@ class Tabuada:
         return Tabuada.run_arithmetic_expression()
 
 
-
-
     def select_digit(digit, mode):
 
         difficulty = mode.lower()
@@ -90,7 +87,6 @@ class Tabuada:
         return choice(digit)
     
 
-
     def current_expression():
         """ Returns a valid python expression ready for evaluation """
 
@@ -105,10 +101,7 @@ class Tabuada:
             Tabuada.term_two = Tabuada.select_digit(Tabuada.digits, Tabuada.mode)
             Tabuada.last_term = copy(Tabuada.term_two)
         
-
-
         return f"{Tabuada.term_one} {Tabuada.operation} {Tabuada.term_two}"
-
 
 
     def current_expression_template():
@@ -121,9 +114,7 @@ class Tabuada:
         else:
             Tabuada.operator = Tabuada.operation
             
-
         return f"{Tabuada.term_one} {Tabuada.operator} {Tabuada.term_two}"
-
 
 
     def eval_expression(expression, user_input):
@@ -145,14 +136,11 @@ class Tabuada:
         return Tabuada.digits.pop( Tabuada.digits.index(Tabuada.last_term) )
 
 
-
     def run_arithmetic_expression():
         
         while len(Tabuada.digits):
             expression = Tabuada.current_expression()
             question = Tabuada.current_expression_template()
-
-
 
             print(f"{question} = ")
 
@@ -164,7 +152,6 @@ class Tabuada:
                 else:
                     pass
 
-
                 #if len(Tabuada.digits) == 0:
                     #print("Would you like to keep playing?")
 
@@ -173,4 +160,6 @@ class Tabuada:
 
             except KeyboardInterrupt:
                 sys.exit(0)
+            
+
             

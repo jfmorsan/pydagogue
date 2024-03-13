@@ -10,7 +10,6 @@ class Pydagogue:
     _format = "... "
     _indent = "\t"
     reminder = 0
-
     last_input = None
 
 
@@ -38,7 +37,6 @@ class Pydagogue:
         print("D) Tabuada de Divisão")
         print()
 
-
     def parse_user_input(self, user_input):
         """ Parses user input """
 
@@ -64,38 +62,26 @@ class Pydagogue:
             if option in Tabuada.modes:
                 self.mode = option
 
-
     def prompt(self):
-        """ Prompt the user for basic input to get everything started """
-        
+        """ Prompt the user for basic input to get everything started """        
         self.menu()
-        
+
         while True:
             try:
                 user_input = input(Pydagogue._format)
-
                 self.parse_user_input(user_input)
                 Tabuada.init(self.operation, self.tableof, self.mode)
-
-
-                if len(user_input) > 1:
-                    _input = user_input.split(" ")
-                else:
-                    if user_input.upper() in Tabuada.operations:
-                        key = Tabuada.operations[ user_input.upper() ]
-                        Tabuada.init(operation=key)
-                    else:
-                        Pydagogue.reminder += 1
-                        if Pydagogue.reminder == 5:
-                            Pydagogue.reminder = 0
-                            self.menu()
-
 
             except EOFError:
                 pass
             except KeyboardInterrupt:
                 sys.exit(0)
 
+        # Menu is called once again after consecutive inputs that don't trigger any in-game action
+        self.reminder += 1
+        if self.reminder == 5:
+            self.reminder = 0
+            self.menu()
 
 if __name__ == '__main__':
     Pydagogue(None, None, 'EASY')
